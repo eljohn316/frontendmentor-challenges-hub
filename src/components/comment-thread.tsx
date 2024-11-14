@@ -8,7 +8,7 @@ function Comment({ comment }: { comment: CommentWithReplies }) {
       <CommentCard type="comment" comment={comment} />
       <div className="mt-4 space-y-6 border-l-2 border-l-neutral-light-gray-2 pl-5 md:pl-10 md:ml-10">
         {comment.replies
-          .sort((a, b) => a.createdAt - b.createdAt)
+          .sort((a, b) => a.createdAt.valueOf() - b.createdAt.valueOf())
           .map((reply) => (
             <CommentCard key={reply.id} type="reply" comment={reply} />
           ))}
