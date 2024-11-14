@@ -41,10 +41,10 @@ export const comments: CommentWithReplies[] = [
     },
     replies: [
       {
-        id: 3,
+        id: 11,
         content:
           "If you're still new, I'd recommend focusing on the fundamentals of HTML, CSS, and JS before considering React. It's very tempting to jump ahead but lay a solid foundation first.",
-        createdAt: new Date(currentDate.setDate(currentDate.getDate() - 7)),
+        createdAt: new Date(2024, 10, 7),
         score: 4,
         replyingTo: 'maxblagun',
         user: {
@@ -57,10 +57,10 @@ export const comments: CommentWithReplies[] = [
         commentId: 2
       },
       {
-        id: 4,
+        id: 12,
         content:
           "I couldn't agree more with this. Everything moves so fast and it always seems like everyone knows the newest library/framework. But the fundamentals are what stay constant.",
-        createdAt: new Date(currentDate.setDate(currentDate.getDate() - 2)),
+        createdAt: new Date(2024, 10, 12),
         score: 2,
         replyingTo: 'ramsesmiron',
         user: {

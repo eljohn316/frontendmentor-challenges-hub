@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { db } from './db';
 import { comments } from './data';
+import { CommentThread } from './components/comment-thread';
+import { CommentForm } from './components/comment-form';
 
 function App() {
   useEffect(() => {
@@ -19,7 +21,12 @@ function App() {
     db.open();
   }, []);
 
-  return <div>App</div>;
+  return (
+    <div className="max-w-3xl mx-auto my-10 space-y-6 px-6">
+      <CommentThread />
+      <CommentForm />
+    </div>
+  );
 }
 
 export default App;
