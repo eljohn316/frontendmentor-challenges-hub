@@ -21,6 +21,30 @@ export function CommentCard({ type, comment }: CommentCardProps) {
   const [toggleReplyForm, setToggleReplyForm] = useState<boolean>(false);
   const [toggleEditForm, setToggleEditForm] = useState<boolean>(false);
 
+  async function handleUpdateScore(direction: 'upvote' | 'downvote') {
+    const newScore =
+      direction === 'upvote' ? comment.score + 1 : comment.score - 1;
+
+    try {
+      if (type === 'comment') {
+        await db.comments.update(comment.id, { score: newScore });
+      } else {
+        const reply = await db.comments.get(comment.commentId);
+
+        if (!reply) return;
+
+        const updatedReplies = reply.replies.map((r) => {
+          if (r.id === comment.id) return { ...r, score: newScore };
+          return r;
+        });
+
+        await db.comments.update(reply.id, { replies: updatedReplies });
+      }
+    } catch (error) {
+      console.error('Unable to update comment score', error);
+    }
+  }
+
   const actions =
     comment.user.username === currentUser.username ? (
       <div className="space-x-4 md:space-x-5">
@@ -38,8 +62,8 @@ export function CommentCard({ type, comment }: CommentCardProps) {
           <ScoreControls
             direction="col"
             score={comment.score}
-            onUpvote={() => {}}
-            onDownvote={() => {}}
+            onUpvote={() => handleUpdateScore('upvote')}
+            onDownvote={() => handleUpdateScore('downvote')}
           />
         </div>
         <div className="flex-auto">
@@ -99,8 +123,8 @@ export function CommentCard({ type, comment }: CommentCardProps) {
             <ScoreControls
               direction="row"
               score={comment.score}
-              onUpvote={() => {}}
-              onDownvote={() => {}}
+              onUpvote={() => handleUpdateScore('upvote')}
+              onDownvote={() => handleUpdateScore('downvote')}
             />
             <div className="block md:hidden">{actions}</div>
           </div>
