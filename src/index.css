@@ -1,3 +1,13 @@
+@import url('@fontsource/rubik/400.css');
+@import url('@fontsource/rubik/500.css');
+@import url('@fontsource/rubik/700.css');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Rubik', sans-serif;
+  }
+}
