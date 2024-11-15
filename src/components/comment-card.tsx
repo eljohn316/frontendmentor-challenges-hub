@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { formatDistanceToNowStrict } from 'date-fns';
 import { CommentWithoutReplies, db, Reply } from '../db';
 import { currentUser } from '../data';
@@ -45,6 +45,41 @@ export function CommentCard({ type, comment }: CommentCardProps) {
     }
   }
 
+  async function handleReply(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    const content = formData.get('comment') as string;
+
+    if (!content) return;
+
+    const currentComment = await db.comments.get(
+      type === 'comment' ? comment.id : comment.commentId
+    );
+
+    if (!currentComment) return;
+
+    const newReply: Reply = {
+      content: content.replace(`@${comment.user.username}`, ''),
+      createdAt: new Date(),
+      id: Date.now(),
+      replyingTo: comment.user.username,
+      user: currentUser,
+      score: 0,
+      commentId: currentComment.id
+    };
+
+    const newReplies = [...currentComment.replies, newReply];
+
+    try {
+      await db.comments.update(currentComment.id, { replies: newReplies });
+    } catch (error) {
+      console.error('Unable to add comment reply', error);
+    }
+
+    setToggleReplyForm(false);
+  }
+
   const actions =
     comment.user.username === currentUser.username ? (
       <div className="space-x-4 md:space-x-5">
@@ -52,7 +87,7 @@ export function CommentCard({ type, comment }: CommentCardProps) {
         <EditActionButton onClick={() => {}} />
       </div>
     ) : (
-      <ReplyActionButton onClick={() => setToggleReplyForm(true)} />
+      <ReplyActionButton onClick={() => setToggleReplyForm(!toggleReplyForm)} />
     );
 
   return (
@@ -131,7 +166,12 @@ export function CommentCard({ type, comment }: CommentCardProps) {
         </div>
       </div>
 
-      {toggleReplyForm && <CommentForm replyingTo={comment.user.username} />}
+      {toggleReplyForm && (
+        <CommentForm
+          replyingTo={comment.user.username}
+          onSubmit={handleReply}
+        />
+      )}
     </div>
   );
 }
