@@ -2,7 +2,7 @@ import { FormEvent, useState } from 'react';
 import { formatDistanceToNowStrict } from 'date-fns';
 import { CommentWithoutReplies, db, Reply } from '../db';
 import { currentUser } from '../data';
-import { getImage } from '../utils';
+import { cn, getImage } from '../utils';
 
 import { ScoreControls } from './score-controls';
 import { Textarea } from './textarea';
@@ -91,7 +91,7 @@ export function CommentCard({ type, comment }: CommentCardProps) {
     );
 
   return (
-    <div>
+    <div className={cn(toggleReplyForm && 'space-y-3')}>
       <div className="bg-white rounded-md p-6 md:flex md:gap-x-5">
         <div className="hidden flex-none md:block">
           <ScoreControls
