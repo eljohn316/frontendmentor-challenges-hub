@@ -88,7 +88,25 @@ export function CommentCard({ type, comment }: CommentCardProps) {
     setToggleReplyForm(false);
   }
 
-  function handleDeleteComment() {}
+  async function handleDeleteComment() {
+    try {
+      if (type === 'comment') {
+        await db.comments.delete(comment.id);
+      } else {
+        const currentComment = await db.comments.get(comment.commentId);
+
+        if (!currentComment) return;
+
+        const newReplies = currentComment.replies.filter(
+          (reply) => reply.id !== comment.id
+        );
+
+        await db.comments.update(currentComment.id, { replies: newReplies });
+      }
+    } catch (error) {
+      console.error('Unable to delete comment', error);
+    }
+  }
 
   const actions =
     comment.user.username === currentUser.username ? (
