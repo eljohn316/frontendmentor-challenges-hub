@@ -108,11 +108,41 @@ export function CommentCard({ type, comment }: CommentCardProps) {
     }
   }
 
+  async function handleEditComment(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    const content = formData.get('comment') as string;
+
+    if (!content) return;
+
+    try {
+      if (type === 'comment') {
+        await db.comments.update(comment.id, { content });
+      } else {
+        const currentComment = await db.comments.get(comment.commentId);
+
+        if (!currentComment) return;
+
+        const newReplies = currentComment.replies.map((reply) => {
+          if (reply.id === comment.id) return { ...reply, content };
+          return reply;
+        });
+
+        await db.comments.update(currentComment.id, { replies: newReplies });
+      }
+    } catch (error) {
+      console.error('Unable to update comment', error);
+    }
+
+    setToggleEditForm(false);
+  }
+
   const actions =
     comment.user.username === currentUser.username ? (
       <div className="space-x-4 md:space-x-5">
         <DeleteActionButton onClick={() => setToggleConfirmDeleteModal(true)} />
-        <EditActionButton onClick={() => {}} />
+        <EditActionButton onClick={() => setToggleEditForm(!toggleEditForm)} />
       </div>
     ) : (
       <ReplyActionButton onClick={() => setToggleReplyForm(!toggleReplyForm)} />
@@ -199,7 +229,7 @@ export function CommentCard({ type, comment }: CommentCardProps) {
             </div>
             <div className="my-4 md:mb-0">
               {toggleEditForm ? (
-                <form className="space-y-4">
+                <form className="space-y-4" onSubmit={handleEditComment}>
                   <Textarea
                     name="comment"
                     id="comment"
