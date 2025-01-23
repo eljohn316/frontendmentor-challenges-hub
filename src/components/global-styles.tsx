@@ -50,7 +50,17 @@ const GlobalStyles = createGlobalStyle`
 
   body {
     font-family: 'Josefin Sans Variable', sans-serif;
+    font-size: 1.125rem;
+    background-color: hsl(0, 0%, 98%);
   }
 `;
 
 export default GlobalStyles;
+/**
+ --clr-bg-color: hsl(0, 0%, 98%);
+ --clr-bg-color: hsl(235, 21%, 11%);
+ 
+
+ --clr-primary: hsl(220, 98%, 61%);
+ --clr-todo-done: hsl(236, 33%, 92%);
+ */
