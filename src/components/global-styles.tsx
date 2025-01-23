@@ -1,10 +1,12 @@
+// @ts-ignore
+import '@fontsource-variable/josefin-sans';
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
  /*
     Josh's Custom CSS Reset
     https://www.joshwcomeau.com/css/custom-css-reset/
-  */
+  */  
 
   *, *::before, *::after {
     box-sizing: border-box;
@@ -42,6 +44,12 @@ const GlobalStyles = createGlobalStyle`
 
   #root {
     isolation: isolate;
+  }
+
+  /* Global Styles */
+
+  body {
+    font-family: 'Josefin Sans Variable', sans-serif;
   }
 `;
 
