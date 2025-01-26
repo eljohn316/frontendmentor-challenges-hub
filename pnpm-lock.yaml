@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@fontsource-variable/josefin-sans':
-        specifier: ^5.1.1
-        version: 5.1.1
       react:
         specifier: ^19.0.0
         version: 19.0.0
@@ -335,9 +332,6 @@ packages:
   '@eslint/plugin-kit@0.2.5':
     resolution: {integrity: sha512-lB05FkqEdUg2AA0xEbUz0SnkXT1LcCTa438W4IWTUh4hdOnVbQyOJ81OrDXsJk/LSiJHubgGEFoR5EHq1NsH1A==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
-  '@fontsource-variable/josefin-sans@5.1.1':
-    resolution: {integrity: sha512-yNnqEfwy0iV61kylO4gHv10tIYTE+/qq2jssI5ppsm/xaUgEWdeUCQibVqBZJTrOSucUBTnCx4VFtLiwE4IIgQ==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -1364,8 +1358,6 @@ snapshots:
     dependencies:
       '@eslint/core': 0.10.0
       levn: 0.4.1
-
-  '@fontsource-variable/josefin-sans@5.1.1': {}
 
   '@humanfs/core@0.19.1': {}
 
