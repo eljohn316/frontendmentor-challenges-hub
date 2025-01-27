@@ -4,12 +4,8 @@ import { CheckboxInput } from '@/components/checkbox';
 import { BaseButton } from '@/components/base-button';
 import { CrossIcon } from '@/components/icons';
 import { VisuallyHidden } from '@/components/visually-hidden';
-
-type Todo = {
-  id: number;
-  done: boolean;
-  task: string;
-};
+import { useTodos, type Todo } from '@/hooks/use-todos';
+import { type Filter } from '@/components/todo-wrapper';
 
 const Wrapper = styled(Card)`
   :root & {
@@ -146,7 +142,17 @@ const FilterButton = styled(BaseButton)<{ $active?: boolean }>`
   }
 `;
 
-export function TodoItems({ todos }: { todos: Todo[] }) {
+export function TodoItems({
+  todos,
+  filter,
+  onFilter
+}: {
+  todos: Todo[];
+  filter: Filter;
+  onFilter: (filter: Filter) => void;
+}) {
+  const { removeTodo, updateTodo, clearCompletedTodos } = useTodos();
+
   return (
     <>
       <Wrapper>
@@ -157,11 +163,12 @@ export function TodoItems({ todos }: { todos: Todo[] }) {
               name={`todo-${todo.id}`}
               id={`todo-${todo.id}`}
               defaultChecked={todo.done}
+              onChange={(e) => updateTodo(todo.id, { done: e.target.checked })}
             />
             <TodoItemLabel htmlFor={`todo-${todo.id}`} $done={todo.done}>
               {todo.task}
             </TodoItemLabel>
-            <Button type="button">
+            <Button type="button" onClick={() => removeTodo(todo.id)}>
               <CrossIcon aria-hidden="true" />
               <VisuallyHidden>Remove todo item</VisuallyHidden>
             </Button>
@@ -172,18 +179,44 @@ export function TodoItems({ todos }: { todos: Todo[] }) {
             {todos.length} {todos.length === 1 ? 'item' : 'items'} left
           </Text>
           <Filters $screen="desktop">
-            <FilterButton $active>All</FilterButton>
-            <FilterButton>Active</FilterButton>
-            <FilterButton>Completed</FilterButton>
+            <FilterButton
+              $active={filter === 'all'}
+              onClick={() => onFilter('all')}>
+              All
+            </FilterButton>
+            <FilterButton
+              $active={filter === 'active'}
+              onClick={() => onFilter('active')}>
+              Active
+            </FilterButton>
+            <FilterButton
+              $active={filter === 'completed'}
+              onClick={() => onFilter('completed')}>
+              Completed
+            </FilterButton>
           </Filters>
-          <ClearButton type="button">Clear completed</ClearButton>
+          <ClearButton type="button" onClick={() => clearCompletedTodos()}>
+            Clear completed
+          </ClearButton>
         </Actions>
       </Wrapper>
 
       <Filters $screen="mobile">
-        <FilterButton $active>All</FilterButton>
-        <FilterButton>Active</FilterButton>
-        <FilterButton>Completed</FilterButton>
+        <FilterButton
+          $active={filter === 'all'}
+          onClick={() => onFilter('all')}>
+          All
+        </FilterButton>
+        <FilterButton
+          $active={filter === 'active'}
+          onClick={() => onFilter('active')}>
+          Active
+        </FilterButton>
+        <FilterButton
+          $active={filter === 'completed'}
+          onClick={() => onFilter('completed')}>
+          Completed
+        </FilterButton>
       </Filters>
     </>
   );

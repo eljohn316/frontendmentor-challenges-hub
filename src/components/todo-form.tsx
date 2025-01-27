@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import { Card } from '@/components/card';
 import { CheckboxInput } from '@/components/checkbox';
 
@@ -40,17 +40,17 @@ const Input = styled.input.attrs({ type: 'text' })`
   }
 `;
 
-export const TodoForm = forwardRef<HTMLFormElement>(function TodoForm(
-  props,
-  ref
-) {
+export const TodoForm = forwardRef<
+  HTMLFormElement,
+  React.ComponentPropsWithoutRef<'form'>
+>(function TodoForm(props, ref) {
   return (
     <Form as="form" {...props} ref={ref} {...props}>
       <CheckboxInput type="checkbox" name="done" id="done" />
       <Input
         type="text"
-        name="todo"
-        id="todo"
+        name="task"
+        id="task"
         placeholder="Create a new todo..."
       />
     </Form>

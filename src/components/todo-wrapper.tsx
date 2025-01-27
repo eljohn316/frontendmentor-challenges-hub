@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { TodoForm } from '@/components/todo-form';
 import { TodoItems } from '@/components/todo-items';
+import { useTodos } from '@/hooks/use-todos';
+import { useState } from 'react';
 
 const MainWrapper = styled.div`
   margin-top: 3rem;
@@ -10,39 +12,36 @@ const MainWrapper = styled.div`
   }
 `;
 
-const todos = [
-  {
-    id: 1,
-    done: true,
-    task: 'Complete online JavaScript course'
-  },
-  {
-    id: 2,
-    done: false,
-    task: 'Jog around the park 3x'
-  },
-  {
-    id: 3,
-    done: false,
-    task: '10 minutes meditation'
-  },
-  {
-    id: 4,
-    done: false,
-    task: 'Read for 1 hour'
-  },
-  {
-    id: 5,
-    done: false,
-    task: 'Complete Todo App on FrontendMentor'
-  }
-];
+export type Filter = 'all' | 'active' | 'completed';
 
 export function TodoWrapper() {
+  const { todos, createTodo } = useTodos();
+  const [filter, setFilter] = useState<Filter>('all');
+
+  const filteredTodos =
+    filter === 'all'
+      ? todos
+      : filter === 'active'
+      ? todos.filter((t) => !t.done)
+      : todos.filter((t) => t.done);
+
+  function action(formData: FormData) {
+    const task = formData.get('task') as string | null;
+    const done = formData.get('done');
+
+    if (!task) return;
+
+    createTodo({ task, done: done ? true : false });
+  }
+
   return (
     <MainWrapper>
-      <TodoForm />
-      <TodoItems todos={todos} />
+      <TodoForm action={action} />
+      <TodoItems
+        todos={filteredTodos}
+        filter={filter}
+        onFilter={(filter: Filter) => setFilter(filter)}
+      />
     </MainWrapper>
   );
 }
