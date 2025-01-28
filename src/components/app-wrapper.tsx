@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { ThemeProvider } from '@/providers/theme-provider';
 
 const Header = styled.div`
   :root & {
@@ -40,9 +41,9 @@ const MaxwidthWrapper = styled.div`
 
 export function AppWrapper({ children }: { children: React.ReactNode }) {
   return (
-    <>
+    <ThemeProvider>
       <Header />
       <MaxwidthWrapper>{children}</MaxwidthWrapper>
-    </>
+    </ThemeProvider>
   );
 }
