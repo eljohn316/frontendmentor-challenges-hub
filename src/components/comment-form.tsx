@@ -60,7 +60,7 @@ export function CommentForm({ onSubmit, replyingTo }: CommentFormProps) {
           <button
             type="submit"
             className="bg-primary-moderate-blue text-white uppercase text-sm font-medium px-6 py-2 rounded-md hover:bg-primary-light-gray-blue">
-            Send
+            {replyingTo ? 'Reply' : 'Send'}
           </button>
         </div>
       </form>

@@ -25,7 +25,7 @@ export function CommentThread() {
   if (!comments) return;
 
   return (
-    <div className="max-w-3xl mx-auto my-10 space-y-6 px-6">
+    <div className="space-y-6">
       {comments.map((comment) => (
         <Comment key={comment.id} comment={comment} />
       ))}

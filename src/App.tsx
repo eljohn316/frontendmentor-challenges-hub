@@ -22,7 +22,7 @@ function App() {
   }, []);
 
   return (
-    <div className="max-w-3xl mx-auto my-10 space-y-6 px-6">
+    <div className="max-w-3xl mx-auto my-10 space-y-6 px-4">
       <CommentThread />
       <CommentForm />
     </div>
