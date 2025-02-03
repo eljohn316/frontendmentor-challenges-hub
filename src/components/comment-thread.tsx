@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { CommentWithReplies, db } from '../db';
 import { CommentCard } from './comment-card';
@@ -17,16 +18,16 @@ function Comment({ comment }: { comment: CommentWithReplies }) {
   );
 }
 
-const getComments = () => db.comments.orderBy('score').reverse().toArray();
-
 export function CommentThread() {
-  const comments = useLiveQuery(getComments);
+  const comments = useLiveQuery(() => db.comments.toArray());
 
   if (!comments) return;
 
+  const sortedComments = _.orderBy(comments, ['score'], ['desc']);
+
   return (
     <div className="space-y-6">
-      {comments.map((comment) => (
+      {sortedComments.map((comment) => (
         <Comment key={comment.id} comment={comment} />
       ))}
     </div>
