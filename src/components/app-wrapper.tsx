@@ -2,17 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { ThemeProvider } from '@/providers/theme-provider';
 
-const Header = styled.div`
-  :root & {
-    --bg-image-mobile-url: url('/bg-mobile-light.jpg');
-    --bg-image-desktop-url: url('/bg-desktop-light.jpg');
-  }
-  :root[data-theme='dark'] & {
-    --bg-image-mobile-url: url('/bg-mobile-dark.jpg');
-    --bg-image-desktop-url: url('/bg-desktop-dark.jpg');
-  }
-
-  background-image: var(--bg-image-mobile-url);
+const BaseHeader = styled.div`
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -23,8 +13,36 @@ const Header = styled.div`
 
   @media (min-width: 38rem) {
     max-height: 18rem;
-    background-image: var(--bg-image-desktop-url);
     background-size: cover;
+  }
+`;
+
+const LighThemeHeader = styled(BaseHeader)`
+  :root[data-theme='dark'] & {
+    opacity: 0;
+    scale: 0;
+  }
+
+  background-image: url('/bg-mobile-light.jpg');
+
+  @media (min-width: 38rem) {
+    background-image: url('/bg-desktop-light.jpg');
+  }
+`;
+
+const DarkThemeHeader = styled(BaseHeader)`
+  opacity: 0;
+  scale: 0;
+
+  :root[data-theme='dark'] & {
+    opacity: 1;
+    scale: 1;
+
+    background-image: url('/bg-mobile-dark.jpg');
+
+    @media (min-width: 38rem) {
+      background-image: url('/bg-desktop-dark.jpg');
+    }
   }
 `;
 
@@ -42,7 +60,8 @@ const MaxwidthWrapper = styled.div`
 export function AppWrapper({ children }: { children: React.ReactNode }) {
   return (
     <ThemeProvider>
-      <Header />
+      <LighThemeHeader />
+      <DarkThemeHeader />
       <MaxwidthWrapper>{children}</MaxwidthWrapper>
     </ThemeProvider>
   );
