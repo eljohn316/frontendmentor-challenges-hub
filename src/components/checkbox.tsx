@@ -35,7 +35,7 @@ export const CheckboxInput = styled.input.attrs({ type: 'checkbox' })`
 
   &:checked::after {
     background-color: transparent;
-    background-image: url('/src/assets/icon-check.svg');
+    background-image: url('/icon-check.svg');
     background-position: center;
     background-repeat: no-repeat;
   }

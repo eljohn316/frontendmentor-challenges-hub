@@ -4,12 +4,12 @@ import { ThemeProvider } from '@/providers/theme-provider';
 
 const Header = styled.div`
   :root & {
-    --bg-image-mobile-url: url('/src/assets/bg-mobile-light.jpg');
-    --bg-image-desktop-url: url('/src/assets/bg-desktop-light.jpg');
+    --bg-image-mobile-url: url('/bg-mobile-light.jpg');
+    --bg-image-desktop-url: url('/bg-desktop-light.jpg');
   }
   :root[data-theme='dark'] & {
-    --bg-image-mobile-url: url('/src/assets/bg-mobile-dark.jpg');
-    --bg-image-desktop-url: url('/src/assets/bg-desktop-dark.jpg');
+    --bg-image-mobile-url: url('/bg-mobile-dark.jpg');
+    --bg-image-desktop-url: url('/bg-desktop-dark.jpg');
   }
 
   background-image: var(--bg-image-mobile-url);
