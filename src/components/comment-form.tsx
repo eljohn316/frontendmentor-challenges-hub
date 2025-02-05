@@ -1,4 +1,4 @@
-import { FormEvent, FormEventHandler, useRef } from 'react';
+import { FormEvent, FormEventHandler, useEffect, useRef } from 'react';
 import { Textarea } from './textarea';
 import { currentUser } from '../data';
 import { db } from '../db';
@@ -10,7 +10,14 @@ interface CommentFormProps {
 }
 
 export function CommentForm({ onSubmit, replyingTo }: CommentFormProps) {
-  const formRef = useRef<HTMLFormElement | null>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    if (replyingTo) {
+      textareaRef.current?.focus();
+    }
+  }, []);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -54,6 +61,7 @@ export function CommentForm({ onSubmit, replyingTo }: CommentFormProps) {
             id="comment"
             placeholder="Add a comment..."
             defaultValue={replyingTo ? '@' + replyingTo : ''}
+            ref={textareaRef}
           />
         </div>
         <div className="flex justify-end md:flex-none items-start">

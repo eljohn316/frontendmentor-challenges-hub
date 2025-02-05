@@ -3,6 +3,7 @@ import { db } from './db';
 import { comments } from './data';
 import { CommentThread } from './components/comment-thread';
 import { CommentForm } from './components/comment-form';
+import { Attribution } from './components/attribution';
 
 function App() {
   useEffect(() => {
@@ -22,10 +23,13 @@ function App() {
   }, []);
 
   return (
-    <div className="max-w-3xl mx-auto my-10 space-y-6 px-4">
-      <CommentThread />
-      <CommentForm />
-    </div>
+    <>
+      <div className="min-h-screen max-w-3xl mx-auto my-10 space-y-6 px-4">
+        <CommentThread />
+        <CommentForm />
+      </div>
+      <Attribution />
+    </>
   );
 }
 
