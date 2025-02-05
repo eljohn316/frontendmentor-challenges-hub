@@ -59,10 +59,12 @@ const MaxwidthWrapper = styled.div`
 
 export function AppWrapper({ children }: { children: React.ReactNode }) {
   return (
-    <ThemeProvider>
-      <LighThemeHeader />
-      <DarkThemeHeader />
-      <MaxwidthWrapper>{children}</MaxwidthWrapper>
-    </ThemeProvider>
+    <div>
+      <ThemeProvider>
+        <LighThemeHeader />
+        <DarkThemeHeader />
+        <MaxwidthWrapper>{children}</MaxwidthWrapper>
+      </ThemeProvider>
+    </div>
   );
 }

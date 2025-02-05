@@ -88,6 +88,7 @@ const GlobalStyles = createGlobalStyle`
     font-family: 'Josefin Sans', sans-serif;
     font-size: 1.125rem;
     background-color: var(--clr-background);
+    overflow-y: scroll;
   }
 `;
 
