@@ -29,18 +29,18 @@ Users should be able to:
 
 ### Screenshot
 
-![](/public/screenshot.png)
+![](./public/screenshot.png)
 
 ### Links
 
-- Solution URL: [https://github.com/eljohn316/interactive-comments-section-app](https://github.com/eljohn316/interactive-comments-section-app)
+- Solution URL: [https://github.com/eljohn316/frontendmentor-challenges-hub/tree/main/challenges/interactive-comments-section](https://github.com/eljohn316/frontendmentor-challenges-hub/tree/main/challenges/interactive-comments-section)
 - Live Site URL: [https://interactive-comments-section-app.vercel.app/](https://interactive-comments-section-app.vercel.app/)
 
 ## My process
 
 ### Built with
 
-- Semantic HTML5 markup
+- HTML
 - TypeScript
 - [React](https://reactjs.org/) - JS library
 - [TailwindCSS](https://tailwindcss.com/) - for styling

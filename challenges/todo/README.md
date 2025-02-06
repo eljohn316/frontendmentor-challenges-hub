@@ -15,8 +15,6 @@ This is a solution to the [Todo app challenge on Frontend Mentor](https://www.fr
   - [Useful resources](#useful-resources)
 - [Author](#author)
 
-**Note: Delete this note and update the table of contents based on what sections you keep.**
-
 ## Overview
 
 ### The challenge
@@ -35,23 +33,23 @@ Users should be able to:
 
 ### Screenshot
 
-![](/public/screenshot-light-theme.png)
-![](/public/screenshot-dark-theme.png)
+![](./public/screenshot-light-theme.png)
+![](./public/screenshot-dark-theme.png)
 
 ### Links
 
-- Solution URL: [https://github.com/eljohn316/todo-app](https://github.com/eljohn316/todo-app)
-- Live Site URL: [https://todo-app-eta-two-26.vercel.app/](https://todo-app-eta-two-26.vercel.app/)
+- Solution URL: [https://github.com/eljohn316/frontendmentor-challenges-hub/tree/main/challenges/todo](https://github.com/eljohn316/frontendmentor-challenges-hub/tree/main/challenges/todo)
+- Live Site URL: [https://todo-app-xi-steel-72.vercel.app/](https://todo-app-xi-steel-72.vercel.app/)
 
 ## My process
 
 ### Built with
 
-- HTML5
+- HTML
 - CSS
 - localStorage - For storage
 - [React](https://reactjs.org/) - JS library
-- [Styled Components](https://styled-components.com/) - For styles
+- [Styled Components](https://styled-components.com/) - For styling
 
 ### What I learned
 
