@@ -12,7 +12,7 @@ function Link({ className, children, ...props }: React.ComponentProps<typeof Bas
 
 export function Attribution({ className, ...props }: React.ComponentProps<'div'>) {
   return (
-    <div className={cn('px-4 py-5', className)} {...props}>
+    <div className={cn('px-4 py-5 hidden lg:block', className)} {...props}>
       <p className="text-center text-neutral-400 text-sm">
         Challenge by <Link href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</Link>
         . Coded by <Link href="https://github.com/eljohn316">El John Bonga</Link>.

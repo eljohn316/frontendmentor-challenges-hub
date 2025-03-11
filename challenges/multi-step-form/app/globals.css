@@ -1,6 +1,8 @@
 @import 'tailwindcss';
 
 @theme {
+  --breakpoint-lg: 60rem;
+
   --font-sans: var(--font-ubuntu);
 
   --color-primary-marine-blue: hsl(213, 96%, 18%);
