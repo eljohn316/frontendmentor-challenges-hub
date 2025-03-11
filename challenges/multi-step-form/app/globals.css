@@ -1,0 +1,18 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: var(--font-ubuntu);
+
+  --color-primary-marine-blue: hsl(213, 96%, 18%);
+  --color-primary-purple-blue: hsl(243, 100%, 62%);
+  --color-primary-pastel-blue: hsl(228, 100%, 84%);
+  --color-primary-light-blue: hsl(206, 94%, 87%);
+  --color-primary-strawberry-red: hsl(354, 84%, 57%);
+
+  --color-neutral-cool-gray: hsl(231, 11%, 63%);
+  --color-neutral-light-gray: hsl(229, 24%, 87%);
+  --color-neutral-magnolia: hsl(217, 100%, 97%);
+  --color-neutral-alabaster: hsl(231, 100%, 99%);
+
+  --color-white: hsl(0, 0%, 100%);
+}
