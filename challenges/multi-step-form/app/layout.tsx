@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
-
 import '@/app/globals.css';
+import { Attribution } from '@/components/attribution';
 
 const ubuntu = localFont({
   src: [
@@ -35,7 +35,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={ubuntu.variable}>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased min-h-svh flex flex-col">
+        <div className="flex-1">{children}</div>
+        <Attribution className="flex-none" />
+      </body>
     </html>
   );
 }
