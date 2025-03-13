@@ -35,9 +35,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={ubuntu.variable}>
-      <body className="bg-neutral-magnolia antialiased min-h-svh flex flex-col">
-        <div className="flex-1">{children}</div>
-        <Attribution className="flex-none" />
+      <body className="bg-neutral-magnolia flex min-h-svh flex-col antialiased">
+        {children}
+        <Attribution className="hidden flex-none lg:block" />
       </body>
     </html>
   );
