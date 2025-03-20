@@ -1,10 +1,12 @@
 'use client';
 
+import Image from 'next/image';
 import { useState } from 'react';
 import { useForm, useFormContext } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { formSchema, TFormSchema } from '@/lib/schema';
 import { useCurrentStep } from '@/hooks/use-current-step';
+import { ADD_ONS, PLANS } from '@/constants';
 import {
   StepsIndicatorDesktop,
   StepsIndicatorMobile
@@ -29,8 +31,6 @@ import {
 import { BillingOptionLabel } from '@/components/billing-option-label';
 import { Attribution } from '@/components/attribution';
 import { AddonsCheckboxInput } from '@/components/add-ons-checkbox-input';
-import { ADD_ONS, PLANS } from '@/constants';
-import Image from 'next/image';
 
 function PersonalInfoFields() {
   const form = useFormContext<TFormSchema>();
