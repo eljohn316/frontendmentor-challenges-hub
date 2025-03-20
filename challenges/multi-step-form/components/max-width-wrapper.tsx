@@ -7,7 +7,7 @@ export function MaxwidthWrapper({
 }: React.ComponentProps<'div'>) {
   return (
     <div
-      className={cn('mx-auto w-full max-w-2xl px-4 lg:max-w-5xl', className)}
+      className={cn('mx-auto w-full max-w-lg px-4 lg:max-w-5xl', className)}
       {...props}
     />
   );

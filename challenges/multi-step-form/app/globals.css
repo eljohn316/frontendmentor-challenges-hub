@@ -1,5 +1,7 @@
 @import 'tailwindcss';
 
+@plugin '@tailwindcss/forms';
+
 @theme {
   --breakpoint-lg: 60rem;
   --shadow-main: 0 25px 40px -20px rgba(0, 0, 0, 0.0951);
@@ -13,6 +15,7 @@
   --color-primary-strawberry-red: hsl(354, 84%, 57%);
 
   --color-neutral-cool-gray: hsl(231, 11%, 63%);
+  --color-neutral-cool-gray-2: hsl(231, 11%, 63%, 20%);
   --color-neutral-light-gray: hsl(229, 24%, 87%);
   --color-neutral-magnolia: hsl(217, 100%, 97%);
   --color-neutral-alabaster: hsl(231, 100%, 99%);

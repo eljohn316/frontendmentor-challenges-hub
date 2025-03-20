@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import localFont from 'next/font/local';
+
 import '@/app/globals.css';
-import { Attribution } from '@/components/attribution';
+import { Providers } from '@/app/providers';
 
 const ubuntu = localFont({
   src: [
@@ -35,10 +37,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={ubuntu.variable}>
-      <body className="bg-neutral-magnolia flex min-h-svh flex-col antialiased">
-        {children}
-        <Attribution className="hidden flex-none lg:block" />
-      </body>
+      <Providers>
+        <body className="bg-neutral-magnolia">
+          <div className="absolute inset-x-0 top-0 -z-10 h-[10.75rem] lg:hidden">
+            <Image
+              src="/images/bg-sidebar-mobile.svg"
+              alt="Mobile sidebar background"
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+          {children}
+        </body>
+      </Providers>
     </html>
   );
 }
