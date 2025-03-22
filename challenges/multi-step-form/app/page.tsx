@@ -322,11 +322,12 @@ export default function Page() {
   const { currentStep, setCurrentStep } = useCurrentStep();
 
   const form = useForm<TFormSchema>({
+    mode: 'onBlur',
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: 'Stephen King',
-      email: 'stephenking@g.com',
-      phoneNumber: '123456789',
+      name: '',
+      email: '',
+      phoneNumber: '',
       plan: 'arcade',
       addOns: []
     }
